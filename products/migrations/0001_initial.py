@@ -21,5 +21,5 @@ class Migration(migrations.Migration):
                 ("is_active", models.BooleanField(default=True)),
                 ("date_created", models.DateTimeField(auto_now_add=True)),
             ],
-        ),
+        )
     ]

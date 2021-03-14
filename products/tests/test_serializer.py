@@ -8,11 +8,7 @@ class ProductSerializerTest(TestCase):
         self.description = "Product's description"
         self.price = 100.00
 
-        self.data = {
-            "title": self.title,
-            "description": self.description,
-            "price": self.price,
-        }
+        self.data = {"title": self.title, "description": self.description, "price": self.price}
 
         self.error_message = "This field is required."
 
