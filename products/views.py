@@ -25,7 +25,7 @@ def product_list(request):
     if request.method == "GET":
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        return Response(data=datetime(2000, 4, 5, 3, 23))  # serializer.data)
+        return Response(serializer.data)
 
     elif request.method == "POST":
         serializer = ProductSerializer(data=request.data)
