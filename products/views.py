@@ -1,10 +1,13 @@
 from django.shortcuts import render
+
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
 
 from products.models import Product
 from products.serializers import ProductSerializer
+
+from datetime import datetime
 
 
 def test_view(request):
@@ -17,6 +20,19 @@ def test_view(request):
     return render(request=request, template_name=template, context=context)
 
 
+@api_view(['GET', 'POST'])
+def product_list(request):
+    if request.method == 'GET': 
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response(data=datetime(2000, 4, 5, 3, 23)) # serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # gets a single product 
 @api_view(['GET', 'DELETE','PUT'])
@@ -50,7 +66,3 @@ def product_detail(request, pk):
         serializer.save()
 
         return Response(data={"message": "Product deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
-
-            
-    
-   

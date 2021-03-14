@@ -5,6 +5,6 @@ from products.views import test_view
 
 urlpatterns = [
     path("admin/", admin.site.urls), 
-    path("home/", test_view), 
-    path("api/", include("products.urls")),
+    path("home/", test_view),
+    path("api/", include("products.urls"))
     ]
