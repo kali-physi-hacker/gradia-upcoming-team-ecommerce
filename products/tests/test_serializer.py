@@ -13,7 +13,7 @@ class ProductSerializerTest(TestCase):
             "description": self.description,
             "price": self.price,
         }
-        
+
         self.error_message = "This field is required."
 
     def test_object_creation(self):
@@ -43,10 +43,10 @@ class ProductSerializerTest(TestCase):
 
         self.assertFalse(serializer.is_valid())
         self.assertEqual(serializer.errors.get("title")[0], self.error_message)
-    
+
         data2 = self.data.copy()
         del data2["description"]
-        
+
         serializer = ProductSerializer(data=data2)
         self.assertFalse(serializer.is_valid())
         self.assertEqual(serializer.errors.get("description")[0], self.error_message)
