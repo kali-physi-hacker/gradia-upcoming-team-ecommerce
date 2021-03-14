@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .serializers import ProductSerializer
+from products.serializers import ProductSerializer
 
 
 class ProductSerializerTest(TestCase):
